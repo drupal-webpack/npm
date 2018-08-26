@@ -11,7 +11,7 @@
     "source": "http://cgit.drupalcode.org/npm"
   },
   "require": {
-    "symfony/process": "3.4.x-dev"
+    "symfony/process": ">2.8"
   },
   "autoload": {
     "psr-4": {
