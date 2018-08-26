@@ -54,7 +54,7 @@ class Yarn extends NpmExecutablePluginBase {
       array_unshift($args, "--cwd=$cwd");
     }
     array_unshift($args, 'yarn');
-    return new Process($args);
+    return new Process(implode(' ', $args));
   }
 
 }
