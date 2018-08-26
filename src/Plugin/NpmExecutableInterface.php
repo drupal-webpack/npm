@@ -23,4 +23,15 @@ interface NpmExecutableInterface {
    */
   public function initPackageJson($path);
 
+  /**
+   * Requires given packages.
+   *
+   * @param String[] $packages
+   *   An array of packages to require.
+   * @param string $type
+   *   Type of dependencies. One of ('prod', 'dev', 'optional').
+   * @throws \Drupal\npm\Exception\NpmCommandFailedException
+   */
+  public function addPackages($packages, $type = 'prod');
+
 }

@@ -39,6 +39,22 @@ class Yarn extends NpmExecutablePluginBase {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function addPackages($packages, $type = 'prod') {
+    $args = ['add'];
+    if (in_array($type, ['dev', 'optional'])) {
+      $args[] = "--$type";
+    }
+    $args = array_merge($args, $packages);
+    $process = $this->createProcess($args);
+    $process->run();
+    if (!$process->isSuccessful()) {
+      throw new NpmCommandFailedException($process);
+    }
+  }
+
+  /**
    * Creates a yarn process.
    *
    * @param array $args
