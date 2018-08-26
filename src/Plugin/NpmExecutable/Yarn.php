@@ -54,7 +54,11 @@ class Yarn extends NpmExecutablePluginBase {
       array_unshift($args, "--cwd=$cwd");
     }
     array_unshift($args, 'yarn');
-    return new Process(implode(' ', $args));
+    // Drupal 8.4 come with symfony/process 3.2.8 (3.4.14 in 8.5). Array
+    // arguments were introduced in 3.3.
+    // TODO: Delete this line after dropping support for drupal 8.4.
+    $args = implode(' ', $args);
+    return new Process($args);
   }
 
 }
