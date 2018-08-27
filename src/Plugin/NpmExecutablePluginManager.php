@@ -12,6 +12,8 @@ use Drupal\Core\Plugin\DefaultPluginManager;
  */
 class NpmExecutablePluginManager extends DefaultPluginManager {
 
+  // TODO: Add NpmExecutablePluginManagerInterface.
+
   /**
    * Constructs NpmPluginManager object.
    *

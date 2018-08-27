@@ -15,13 +15,13 @@ interface NpmExecutableInterface {
   public function isAvailable();
 
   /**
-   * Writes an empty package.json file at the specified location.
+   * Writes an empty package.json file.
    *
-   * @param string $path
-   *   Location for the file.
+   * @return \Symfony\Component\Process\Process
+   *
    * @throws \Drupal\npm\Exception\NpmCommandFailedException
    */
-  public function initPackageJson($path);
+  public function initPackageJson();
 
   /**
    * Requires given packages.
@@ -30,8 +30,21 @@ interface NpmExecutableInterface {
    *   An array of packages to require.
    * @param string $type
    *   Type of dependencies. One of ('prod', 'dev', 'optional').
+   * @return \Symfony\Component\Process\Process
+   *
    * @throws \Drupal\npm\Exception\NpmCommandFailedException
    */
   public function addPackages($packages, $type = 'prod');
+
+  /**
+   * Executes a script synchronously.
+   *
+   * @param array $args
+   *   An array of arguments starting with the script name.
+   * @return \Symfony\Component\Process\Process
+   *
+   * @throws \Drupal\npm\Exception\NpmCommandFailedException
+   */
+  public function runScript($args);
 
 }

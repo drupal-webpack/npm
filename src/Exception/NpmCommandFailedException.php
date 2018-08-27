@@ -19,7 +19,7 @@ class NpmCommandFailedException extends Exception {
    *   The process that failed.
    */
   public function __construct(Process $process) {
-    parent::__construct($process->getErrorOutput(), $process->getExitCode());
+    parent::__construct($process->getOutput() . "\n\n" . $process->getErrorOutput(), $process->getExitCode());
     $this->process = $process;
   }
 
