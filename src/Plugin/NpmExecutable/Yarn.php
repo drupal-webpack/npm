@@ -54,9 +54,16 @@ class Yarn extends NpmExecutablePluginBase {
   /**
    * {@inheritdoc}
    */
-  public function runScript($args) {
+  public function runScript($args, callable $callback = NULL, $timeout = NULL) {
     array_unshift($args, 'run');
-    return $this->executeSync($args);
+    $process = $this->createProcess($args);
+    $process->setTimeout($timeout);
+    $process->start();
+    $process->wait($callback);
+    if (!$process->isSuccessful()) {
+      throw new NpmCommandFailedException($process);
+    }
+    return $process;
   }
 
   /**
